@@ -71,6 +71,9 @@ def crawling(keyword) :
     view_num = [soup.find_all('span', 'style-scope ytd-grid-video-renderer')[n].string for n in range(0, len(c))]
 
 
+    # 5.4. 댓글 수 뽑기
+    
+
     # 5.4. 현재 시간 뽑기
     extract_date = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
 

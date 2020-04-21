@@ -34,14 +34,14 @@ def crawling(keyword):
     for vindex in range(30) :
         body.send_keys((Keys.PAGE_DOWN))
         time.sleep(1)
-    body.send_keys(Keys.HOME) #홈 키 누르니까 1초만에 위로 가네요 시간절약 굿
+    body.send_keys(Keys.HOME) #홈 키로 최상단
 
 
 
-    # 2. 해당 키워드의 첫번째 영상부터 n번째 영상까지 크롤링
+    # 2. 해당 키워드의 첫번째 영상부터 n-1번째 영상까지 크롤링
     for vindex in range(1,100):
 
-        # vindex 번호의 영상 클릭 # 불안정함
+        # vindex 번호의 영상 클릭
         print(vindex)
 
         try :

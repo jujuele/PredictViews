@@ -1,14 +1,5 @@
 
-# if vindex in range(1 ,19):  # 스크롤 내려가게 하기 위한 편법
-#     video_btn = browser.find_elements_by_xpath \
-#         ('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[' + str
-#             (vindex) + ']/div[1]/div/div[1]/div/h3/a')
-#     browser.implicitly_wait(delay)
-#     video_btn[0].click()
-#     time.sleep(2)
-#     browser.back()
-#     time.sleep(2)
-#     continue
+
 
 #    필터 옵션 [이번주]
 #    browser.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[1]/div[2]/ytd-search-sub-menu-renderer/div[1]/iron-collapse/div/ytd-search-filter-group-renderer[1]/ytd-search-filter-renderer[3]/a/div/yt-formatted-string').click()
@@ -38,9 +29,3 @@
 # for vindex in range(30):
 #     body.send_keys(Keys.PAGE_UP)
 #     time.sleep(1)
-
-# 100개 이상 되도록 수정
-# 숫자 단위로 받아오도록 수정
-# csv에 읽고 쓰기를 하면 인코딩이 잘 안되는 오류가 발생하여 dataframe 형식으로 바꿈
-# ect 파일 장착
-# float 형으로 바꿔서 한글->숫자로 정확한 표현을 위해 각 단어에 해당되는 숫자를 곱해줬으나 정확한 값으로 전환되지 않음 (ex.4.99명->40000.0명)

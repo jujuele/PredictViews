@@ -17,51 +17,50 @@ browser.implicitly_wait(delay)
 start_url = 'https://www.youtube.com/results?search_query='
 
 # 3. 작성될 파일 열기
-csvfile = open("youtube_crawling_data_ver2.csv", "a", encoding="utf-8", newline="")
-csvwriter = csv.writer(csvfile)
+# data = pd.read_csv('today_youtube_crawling_data.csv',sep=',')
+
+all_data = []
 
 # 4. 크롤링 및 데이터 쓰기
 def crawling(keyword):
 
-    # 1. 유투브 채널 url 생성 + 필터 이번주 내 영상 보도록 설정
+    # 1. 유투브 채널 url 생성 + 오늘 내 영상만 보도록 설정
     browser.get(start_url + keyword)
     browser.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[1]/div[2]/ytd-search-sub-menu-renderer/div[1]/div/ytd-toggle-button-renderer/a/paper-button/yt-formatted-string').click()
-    browser.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[1]/div[2]/ytd-search-sub-menu-renderer/div[1]/iron-collapse/div/ytd-search-filter-group-renderer[1]/ytd-search-filter-renderer[3]/a/div/yt-formatted-string').click()
+    browser.find_element_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[1]/div[2]/ytd-search-sub-menu-renderer/div[1]/iron-collapse/div/ytd-search-filter-group-renderer[1]/ytd-search-filter-renderer[2]/a/div/yt-formatted-string').click()
+    body = browser.find_element_by_tag_name('body')  # 스크롤하기 위해 소스 추출
+
+    #매끄러운 크롤링을 위한 사전 작업
+    for vindex in range(30) :
+        body.send_keys((Keys.PAGE_DOWN))
+        time.sleep(1)
+    body.send_keys(Keys.HOME) #홈 키 누르니까 1초만에 위로 가네요 시간절약 굿
+
 
 
     # 2. 해당 키워드의 첫번째 영상부터 n번째 영상까지 크롤링
     for vindex in range(1,100):
 
-        if vindex in range(1,19): #스크롤 내려가게 하기 위한 편법
-            video_btn = browser.find_elements_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[' + str(vindex) + ']/div[1]/div/div[1]/div/h3/a')
-            time.sleep(2)
+        # vindex 번호의 영상 클릭 # 불안정함
+        print(vindex)
+
+        try :
+            video_btn = browser.find_elements_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer['+str(vindex)+']/div[1]/div/div[1]/div/h3/a')
+            browser.implicitly_wait(5)
             video_btn[0].click()
-            time.sleep(2)
-            browser.back()
-            time.sleep(2)
+            time.sleep(3) # 제목이 뜨기전에 정보를 받아오려고 하는 경우가 있어 잠재워줌
+
+        except :
+            print("loading...")
             continue
 
-        # vindex 번호 영상 클릭 # 불안정함
-        print(vindex)
-        body = browser.find_element_by_tag_name('body')  # 스크롤하기 위해 소스 추출
-
-        if vindex % 20 == 1 or vindex % 20 == 0: #20영상마다 한번씩 스크롤 내려줌
-            body.send_keys(Keys.PAGE_DOWN)
-            time.sleep(5)
-
-        video_btn = browser.find_elements_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer['+str(vindex)+']/div[1]/div/div[1]/div/h3/a')
-        browser.implicitly_wait(delay)
-        video_btn[0].click()
-
-        # 스크롤 내리는 작업
-        for i in range(3): #스크롤 2번 내림
-            body.send_keys(Keys.PAGE_DOWN)
-            time.sleep(2)
+        # 댓글수 확인을 위한 스크롤
+        body.send_keys(Keys.PAGE_DOWN)
+        time.sleep(2)
 
 
         # 페이지 소스 받아오기
         page = browser.page_source
-        time.sleep(2)
         soup = BeautifulSoup(page,'lxml')
 
         # 원하는 정보 수집
@@ -70,15 +69,28 @@ def crawling(keyword):
 
         # 2. 조회수
         view = soup.find('span','view-count style-scope yt-view-count-renderer').string
+        view = select.stoi(view)
 
         # 3. 댓글 수
-        coment = soup.find('yt-formatted-string','count-text style-scope ytd-comments-header-renderer').string
+        try:
+            coment = soup.find('yt-formatted-string','count-text style-scope ytd-comments-header-renderer').string
+            coment = select.stoi(coment)
+        except:
+            coment = None
 
         # 4. 좋아요 수
-        like = soup.find('yt-formatted-string', attrs={"aria-label":True}, id = 'text', class_='style-scope ytd-toggle-button-renderer style-text').string
+        try:
+            like = soup.find('yt-formatted-string', attrs={"aria-label":True}, id = 'text', class_='style-scope ytd-toggle-button-renderer style-text').string
+            like = select.stoi(like)
+        except:
+            like = None
 
         # 5. 구독자 수
-        subc = soup.find('yt-formatted-string','style-scope ytd-video-owner-renderer').string
+        try:
+            subc = soup.find('yt-formatted-string','style-scope ytd-video-owner-renderer').string
+            subc = select.stoi(subc)
+        except:
+            subc = None
 
         # 6. 현재 시간 날짜
         now = time.strftime("%Y/%m/%d %H:%M:%S", time.localtime())
@@ -87,14 +99,13 @@ def crawling(keyword):
 
         # 데이터 행 추가
         row_data=[]
-        row_data.append(vindex)
         row_data.append(now)
         row_data.append(title)
         row_data.append(view)
         row_data.append(coment)
         row_data.append(like)
         row_data.append(subc)
-        csvwriter.writerow(row_data)
+        all_data.append(row_data)
 
         # 크롤링 완료 후 뒤로 가기
         browser.back()
@@ -103,17 +114,21 @@ def crawling(keyword):
 
 
 # 크롤링 원하는 검색어
-keyword_list = ['브이로그']
+key='브이로그'
 
 # 5. 일괄 크롤링
-for key in keyword_list:
-    crawling(key)
-    print(key + " finished")
+crawling(key)
+print(key + " crawling finished")
+
 
 # data 저장
-# 6. 파일 닫기
-csvfile.close()
-#df.to_pickle("youtube_crawling_data_pkl.pkl")
+data = pd.DataFrame(all_data,columns=("Now","Title","View","Coment","Like","Subscriber"))
+
+# csv 파일에 저장
+data.to_csv('today_youtube_crawling_data.csv', mode='w',encoding='utf-8-sig')
+
+# 6. 브라우저 닫기
+browser.close()
 
 # 잘 끝났다면
 print("everything is ok")

@@ -26,7 +26,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../YoutubeViewPredict" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -85,6 +85,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="select" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PredictViews" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/select.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PredictViews" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,6 +132,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.keyword_crawler" />
+        <item itemvalue="Python.select" />
         <item itemvalue="Python.crawler" />
         <item itemvalue="Python.test" />
       </list>
@@ -130,7 +153,9 @@
       <workItem from="1587341789150" duration="29161000" />
       <workItem from="1587383068656" duration="1806000" />
       <workItem from="1587388070342" duration="6854000" />
-      <workItem from="1587398819106" duration="5362000" />
+      <workItem from="1587398819106" duration="15562000" />
+      <workItem from="1587466925711" duration="547000" />
+      <workItem from="1587480075482" duration="4600000" />
     </task>
     <servers />
   </component>
@@ -142,22 +167,38 @@
       <screen x="0" y="0" width="1217" height="720" />
     </state>
     <state x="390" y="116" key="FileChooserDialogImpl/0.0.1217.720@0.0.1217.720" timestamp="1587370895728" />
-    <state width="1176" height="182" key="GridCell.Tab.0.bottom" timestamp="1587404283753">
+    <state width="1176" height="184" key="GridCell.Tab.0.bottom" timestamp="1587483431550">
       <screen x="0" y="0" width="1217" height="720" />
     </state>
-    <state width="1176" height="182" key="GridCell.Tab.0.bottom/0.0.1217.720@0.0.1217.720" timestamp="1587404283753" />
-    <state width="1176" height="182" key="GridCell.Tab.0.center" timestamp="1587404283752">
+    <state width="1176" height="184" key="GridCell.Tab.0.bottom/0.0.1217.720@0.0.1217.720" timestamp="1587483431550" />
+    <state width="1176" height="184" key="GridCell.Tab.0.center" timestamp="1587483431550">
       <screen x="0" y="0" width="1217" height="720" />
     </state>
-    <state width="1176" height="182" key="GridCell.Tab.0.center/0.0.1217.720@0.0.1217.720" timestamp="1587404283752" />
-    <state width="1176" height="182" key="GridCell.Tab.0.left" timestamp="1587404283752">
+    <state width="1176" height="184" key="GridCell.Tab.0.center/0.0.1217.720@0.0.1217.720" timestamp="1587483431550" />
+    <state width="1176" height="184" key="GridCell.Tab.0.left" timestamp="1587483431550">
       <screen x="0" y="0" width="1217" height="720" />
     </state>
-    <state width="1176" height="182" key="GridCell.Tab.0.left/0.0.1217.720@0.0.1217.720" timestamp="1587404283752" />
-    <state width="1176" height="182" key="GridCell.Tab.0.right" timestamp="1587404283752">
+    <state width="1176" height="184" key="GridCell.Tab.0.left/0.0.1217.720@0.0.1217.720" timestamp="1587483431550" />
+    <state width="1176" height="184" key="GridCell.Tab.0.right" timestamp="1587483431550">
       <screen x="0" y="0" width="1217" height="720" />
     </state>
-    <state width="1176" height="182" key="GridCell.Tab.0.right/0.0.1217.720@0.0.1217.720" timestamp="1587404283752" />
+    <state width="1176" height="184" key="GridCell.Tab.0.right/0.0.1217.720@0.0.1217.720" timestamp="1587483431550" />
+    <state width="1176" height="220" key="GridCell.Tab.1.bottom" timestamp="1587463699468">
+      <screen x="0" y="0" width="1217" height="720" />
+    </state>
+    <state width="1176" height="220" key="GridCell.Tab.1.bottom/0.0.1217.720@0.0.1217.720" timestamp="1587463699468" />
+    <state width="1176" height="220" key="GridCell.Tab.1.center" timestamp="1587463699468">
+      <screen x="0" y="0" width="1217" height="720" />
+    </state>
+    <state width="1176" height="220" key="GridCell.Tab.1.center/0.0.1217.720@0.0.1217.720" timestamp="1587463699468" />
+    <state width="1176" height="220" key="GridCell.Tab.1.left" timestamp="1587463699468">
+      <screen x="0" y="0" width="1217" height="720" />
+    </state>
+    <state width="1176" height="220" key="GridCell.Tab.1.left/0.0.1217.720@0.0.1217.720" timestamp="1587463699468" />
+    <state width="1176" height="220" key="GridCell.Tab.1.right" timestamp="1587463699468">
+      <screen x="0" y="0" width="1217" height="720" />
+    </state>
+    <state width="1176" height="220" key="GridCell.Tab.1.right/0.0.1217.720@0.0.1217.720" timestamp="1587463699468" />
     <state x="148" y="4" key="SettingsEditor" timestamp="1587370898400">
       <screen x="0" y="0" width="1217" height="720" />
     </state>
@@ -173,7 +214,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PredictViews$test.coverage" NAME="test Coverage Results" MODIFIED="1587369706780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PredictViews$crawler.coverage" NAME="crawler Coverage Results" MODIFIED="1587369833031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/PredictViews$keyword_crawler.coverage" NAME="keyword_crawler Coverage Results" MODIFIED="1587404283743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PredictViews$crawler.coverage" NAME="crawler Coverage Results" MODIFIED="1587474006837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PredictViews$select.coverage" NAME="select Coverage Results" MODIFIED="1587483060887" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PredictViews$keyword_crawler.coverage" NAME="keyword_crawler Coverage Results" MODIFIED="1587483431540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

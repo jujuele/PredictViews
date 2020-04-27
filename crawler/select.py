@@ -29,5 +29,8 @@ def stoi(keyword) :
         digit = re.findall("\d+", keyword)
         return int(digit[0])
 
+    elif '없음' in keyword:
+        return 0
+
     else : return int(keyword)
 

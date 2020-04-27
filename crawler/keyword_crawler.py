@@ -2,11 +2,8 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import time
 from selenium.webdriver import Chrome
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import csv
-import select
-
+from crawler import select
 
 # 1. url을 불러오기 위한 사전 작업 실행
 delay = 3
@@ -17,7 +14,7 @@ browser.implicitly_wait(delay)
 start_url = 'https://www.youtube.com/results?search_query='
 
 # 3. 작성될 파일 열기
-# data = pd.read_csv('today_youtube_crawling_data.csv',sep=',')
+data = pd.read_csv('today_youtube_crawling_data_ji.csv', sep=',')
 
 all_data = []
 
@@ -31,15 +28,15 @@ def crawling(keyword):
     body = browser.find_element_by_tag_name('body')  # 스크롤하기 위해 소스 추출
 
     #매끄러운 크롤링을 위한 사전 작업
-    for vindex in range(30) :
-        body.send_keys((Keys.PAGE_DOWN))
+    for vindex in range(50) :
+        body.send_keys((Keys.END))
         time.sleep(1)
     body.send_keys(Keys.HOME) #홈 키로 최상단
 
 
 
     # 2. 해당 키워드의 첫번째 영상부터 n-1번째 영상까지 크롤링
-    for vindex in range(1,100):
+    for vindex in range(1,120):
 
         # vindex 번호의 영상 클릭
         print(vindex)
@@ -68,8 +65,12 @@ def crawling(keyword):
         title = soup.find('yt-formatted-string','style-scope ytd-video-primary-info-renderer').string
 
         # 2. 조회수
-        view = soup.find('span','view-count style-scope yt-view-count-renderer').string
-        view = select.stoi(view)
+        try :
+            view = soup.find('span', 'view-count style-scope yt-view-count-renderer').string
+            view = select.stoi(view)
+
+        except :
+            view = None
 
         # 3. 댓글 수
         try:
@@ -113,19 +114,23 @@ def crawling(keyword):
 
 
 
+
 # 크롤링 원하는 검색어
 key='브이로그'
 
 # 5. 일괄 크롤링
-crawling(key)
+try :
+    crawling(key)
+except :
+    "Error : save temporariry"
+
+
+data = pd.DataFrame(all_data, columns=("Now", "Title", "View", "Coment", "Like", "Subscriber"))
 print(key + " crawling finished")
 
-
-# data 저장
-data = pd.DataFrame(all_data,columns=("Now","Title","View","Coment","Like","Subscriber"))
-
 # csv 파일에 저장
-data.to_csv('today_youtube_crawling_data.csv', mode='w',encoding='utf-8-sig')
+data.to_csv('today_youtube_crawling_data_temp.csv',mode='w',encoding='utf-8-sig')
+data.to_csv('today_youtube_crawling_data_ji.csv', mode='a',encoding='utf-8-sig')
 
 # 6. 브라우저 닫기
 browser.close()

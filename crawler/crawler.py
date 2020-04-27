@@ -3,7 +3,7 @@ import time
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
 import csv
-import select
+from crawler import select
 
 #import urllib.reequest
 #import pandas as pd
@@ -49,13 +49,6 @@ def crawling(keyword) :
     # 5. 원하는 정보 수집
     page = browser.page_source
     soup = BeautifulSoup(page, 'lxml')
-
-    # 비디오 재생 길이
-    # all_video_time = soup.find_all('span','style-scope ytd-thumbnail-overlay-time-status-renderer')
-    # video_time = [soup.find_all('span','style-scope ytd-thumbnail-overlay-time-status-renderer')[n].string.strip() for n in range(0,len(all_video_time))]
-
-    # 채널명
-    # chennel = soup.find('span', 'style-scope ytd-c4-tabbed-header-renderer').string
 
     # 5.1. title 뽑기
     all_title = soup.find_all('a', 'yt-simple-endpoint style-scope ytd-grid-video-renderer')

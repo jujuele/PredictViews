@@ -1,9 +1,9 @@
+from crawler import select
 import pandas as pd
 from bs4 import BeautifulSoup
 import time
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
-from crawler import select
 
 # 1. url을 불러오기 위한 사전 작업 실행
 delay = 3

@@ -77,12 +77,12 @@ def crawling(keyword) :
     y = 1  # 업로드 시점의 index
 
     for i in range(0, len(all_title)):
-        if select.sub(view_num[y]) != -1 :
+        if select_temp.sub(view_num[y]) != -1 :
             rows = []
             rows.append(keyword)
             rows.append(title[i])
-            rows.append(select.stoi(sub_num)) # 구독자
-            rows.append(select.stoi(view_num[x]))
+            rows.append(select_temp.stoi(sub_num)) # 구독자
+            rows.append(select_temp.stoi(view_num[x]))
             x += 2  # 조회수만 append
             rows.append(view_num[y])
             y += 2  # 업로드 시점만 append

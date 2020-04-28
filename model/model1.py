@@ -68,7 +68,7 @@ print (theta)
 
 
 # 5. 임의의 구독자 수에 대한 조회수 예측
-X_mine = np.array([100]) # 우리집이 25평이라면, 얼마일까? 25평 -> 890피트 제곱(ft^2)
+X_mine = np.array([[50,16,100]]) # 구독자 100명일 때
 X_mine = (X_mine-mu)/std #feature normalization
 print(X_mine)
 

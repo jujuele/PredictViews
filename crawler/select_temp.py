@@ -33,3 +33,4 @@ def stoi(keyword) :
         return 0
 
     else : return int(keyword)
+

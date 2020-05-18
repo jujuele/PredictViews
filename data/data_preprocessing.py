@@ -2,12 +2,8 @@ import glob
 import numpy as np
 import pandas as pd
 
-files = glob.glob("today*.csv") #today로 시작하는 모든 파일을 묶어줄 함수
-df_list = []
-for filename in files:
-  data = pd.read_csv(filename)
-  df_list.append(data)
-df = pd.concat(df_list)
+data_name = "today_youtube_crawling_data_vlog.csv"
+df = pd.read_csv(data_name) #vlog에 해당하는 데이터
 
 
 df = df.drop_duplicates(subset=['Title']) #Title이 중복되는 행 삭제
@@ -23,11 +19,10 @@ df.Subscriber = pd.to_numeric(df.Subscriber)
 
 
 del df["Unnamed: 0"] # 난잡한 인덱스 정리
-df.to_csv('today_youtube_crawling_data_deduplication.csv', mode='w',encoding='utf-8-sig')
-
 del df["Title"]
 del df["Now"]
-df.to_csv('model_youtube_crawling_data.csv',mode='w',encoding='utf-8-sig')
+
+df.to_csv('model_youtube_crawling_data_vlog.csv',mode='w',encoding='utf-8-sig',index=False)
 
 # df.head() # 처음 5행, 윗부분을 보여줌
 # df.info() # 표의 속성을 요약해줌

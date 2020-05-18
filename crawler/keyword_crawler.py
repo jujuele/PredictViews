@@ -16,7 +16,7 @@ browser.implicitly_wait(delay)
 start_url = 'https://www.youtube.com/results?search_query='
 
 # 3. 작성될 파일 열기
-data = pd.read_csv('today_youtube_crawling_data_ji.csv', sep=',')
+data = pd.read_csv('today_youtube_crawling_data_vlog.csv', sep=',')
 
 all_data = []
 
@@ -132,7 +132,7 @@ print(key + " crawling finished")
 
 # csv 파일에 저장
 data.to_csv('today_youtube_crawling_data_temp.csv',mode='w',encoding='utf-8-sig')
-data.to_csv('today_youtube_crawling_data_ji.csv', mode='a',encoding='utf-8-sig')
+data.to_csv('today_youtube_crawling_data_vlog.csv', mode='a',encoding='utf-8-sig')
 
 # 6. 브라우저 닫기
 browser.close()

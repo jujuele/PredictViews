@@ -25,7 +25,7 @@ def init():
 def mypredict(key, subc, coment, like):
     pview = -1
     if int(key)==1:
-        pview = vlog_multi_variable_regression.predict(int(coment), int(like), int(subc))
+        pview = vlog_multi_variable_regression.predict(int(coment), int(like), int(subc),"vlog")
 
     elif int(key)==2:
         pview = 1#먹방
@@ -46,6 +46,7 @@ def mypredict(key, subc, coment, like):
 
 def program_exit():
     go = int(input("다시하기(1) 종료(0):"))
+    print("")
     if go==1 or go ==0:
         return go
     else :

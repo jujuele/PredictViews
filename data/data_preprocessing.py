@@ -2,7 +2,8 @@ import glob
 import numpy as np
 import pandas as pd
 
-data_name = "today_youtube_crawling_data_vlog.csv"
+
+data_name = "../crawler/today_youtube_crawling_data_vlog.csv"
 df = pd.read_csv(data_name) #vlog에 해당하는 데이터
 
 

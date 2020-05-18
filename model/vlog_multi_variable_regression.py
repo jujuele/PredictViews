@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-def model():
-    data = pd.read_csv('../data/model_youtube_crawling_data.csv')
+def model(key):
+    data_name = "../data/model_youtube_crawling_data_"+key+".csv"
+    data = pd.read_csv(data_name)
 
 
     data.View = pd.to_numeric(data.View)
@@ -71,8 +72,8 @@ def model():
 
 
 # 5. 임의의 구독자 수에 대한 조회수 예측
-def predict(coment, like, subc):
-    theta,mu,std = model()
+def predict(coment, like, subc, key):
+    theta,mu,std = model(key)
     X_mine = np.array([[coment, like, subc]]) # 구독자 100명일 때
     X_mine = (X_mine-mu)/std #feature normalization
     #print(X_mine)

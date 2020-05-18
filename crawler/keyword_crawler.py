@@ -1,11 +1,13 @@
-from crawler import select
+
 import pandas as pd
 from bs4 import BeautifulSoup
 import time
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
+from crawler import filters
 
 # 1. url을 불러오기 위한 사전 작업 실행
+
 delay = 3
 browser = Chrome('d:\Downloads\chromedriver_win32\chromedriver.exe') #자신의 경로로 바꿔줘야함
 browser.implicitly_wait(delay)
@@ -36,7 +38,7 @@ def crawling(keyword):
 
 
     # 2. 해당 키워드의 첫번째 영상부터 n-1번째 영상까지 크롤링
-    for vindex in range(1,120):
+    for vindex in range(100,200):
 
         # vindex 번호의 영상 클릭
         print(vindex)
@@ -45,7 +47,7 @@ def crawling(keyword):
             video_btn = browser.find_elements_by_xpath('/html/body/ytd-app/div/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer['+str(vindex)+']/div[1]/div/div[1]/div/h3/a')
             browser.implicitly_wait(5)
             video_btn[0].click()
-            time.sleep(3) # 제목이 뜨기전에 정보를 받아오려고 하는 경우가 있어 잠재워줌
+            time.sleep(5) # 제목이 뜨기전에 정보를 받아오려고 하는 경우가 있어 잠재워줌
 
         except :
             print("loading...")
@@ -67,7 +69,7 @@ def crawling(keyword):
         # 2. 조회수
         try :
             view = soup.find('span', 'view-count style-scope yt-view-count-renderer').string
-            view = select.stoi(view)
+            view = filters.stoi(view)
 
         except :
             view = None
@@ -75,21 +77,21 @@ def crawling(keyword):
         # 3. 댓글 수
         try:
             coment = soup.find('yt-formatted-string','count-text style-scope ytd-comments-header-renderer').string
-            coment = select.stoi(coment)
+            coment = filters.stoi(coment)
         except:
             coment = None
 
         # 4. 좋아요 수
         try:
             like = soup.find('yt-formatted-string', attrs={"aria-label":True}, id = 'text', class_='style-scope ytd-toggle-button-renderer style-text').string
-            like = select.stoi(like)
+            like = filters.stoi(like)
         except:
             like = None
 
         # 5. 구독자 수
         try:
             subc = soup.find('yt-formatted-string','style-scope ytd-video-owner-renderer').string
-            subc = select.stoi(subc)
+            subc = filters.stoi(subc)
         except:
             subc = None
 

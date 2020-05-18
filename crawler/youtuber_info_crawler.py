@@ -3,13 +3,13 @@ import time
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
 import csv
-from crawler import select
+from crawler import filters
 
 #import urllib.reequest
 #import pandas as pd
 
 
-# 1. url을 불러오기 위한 사전 작업 실행
+# 1. url을 불러오기 위한 사전 작업 실행s
 delay=3
 browser = Chrome('d:\Downloads\chromedriver_win32\chromedriver.exe')
 browser.implicitly_wait(delay)
@@ -77,12 +77,12 @@ def crawling(keyword) :
     y = 1  # 업로드 시점의 index
 
     for i in range(0, len(all_title)):
-        if select_temp.sub(view_num[y]) != -1 :
+        if filter.sub(view_num[y]) != -1 :
             rows = []
             rows.append(keyword)
             rows.append(title[i])
-            rows.append(select_temp.stoi(sub_num)) # 구독자
-            rows.append(select_temp.stoi(view_num[x]))
+            rows.append(filter.stoi(sub_num)) # 구독자
+            rows.append(filter.stoi(view_num[x]))
             x += 2  # 조회수만 append
             rows.append(view_num[y])
             y += 2  # 업로드 시점만 append
